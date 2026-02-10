@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class PruebaController {
     @GetMapping("/saludo")
     public String unEndpoint(){
-        return "Funciona";
+        return "Hola desde el endpoint /api/v1/saludo";
     }
 }
