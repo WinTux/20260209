@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1")
 public class PruebaController {
-    @Value("${DB_PASSWORD}")
+    @Value("${spring.datasource.password}")
     public String valorcito;
     @GetMapping("/saludo")
     public String unEndpoint(){
