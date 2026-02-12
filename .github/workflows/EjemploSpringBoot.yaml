@@ -16,7 +16,7 @@ jobs:
       - name: Build usando Maven
         run: mvn clean install
       - name: Ejecutando app Spring Boot
-        run: mvn spring-boot:run
+        run: mvn verify
         env:
           SPRING_PROFILES_ACTIVE: dev
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
