@@ -15,8 +15,14 @@ jobs:
           distribution: 'temurin'
       - name: Build usando Maven
         run: mvn clean install
-      - name: Ejecutando app Spring Boot
-        run: mvn verify
+      - name: Ejecutando app Spring Boot en background
+        run: mvn spring-boot:run &
         env:
           SPRING_PROFILES_ACTIVE: dev
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      - name: Esperar y probar
+        run: |
+          sleep 10
+          curl -i http://localhost:8080/api/v1/saludo
+      - name: Detener Spring Boot
+        run: pkill -f 'org.springframework.boot.loader.JarLauncher'
