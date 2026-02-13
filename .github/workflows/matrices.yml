@@ -21,7 +21,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        java: [24,25]
+        java: [25,25]
     steps:
     - name: Checkout del código (clonando...)
       uses: actions/checkout@v4
