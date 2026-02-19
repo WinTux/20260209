@@ -38,7 +38,7 @@ jobs:
     - name: Ejecución de análisis de código # Análisis de calidad de código
       run: |
         mvn sonar:sonar \
-        -Dsonar.projectKey=WinTux_20260209 \
+        -Dsonar.projectKey=winux_winux \
         -Dsonar.organization=winux \
         -Dsonar.host.url=https://sonarcloud.io
       env:
