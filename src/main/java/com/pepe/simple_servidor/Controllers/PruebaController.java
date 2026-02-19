@@ -14,4 +14,8 @@ public class PruebaController {
     public String unEndpoint(){
         return "Hola desde el endpoint /api/v1/saludo: " + valorcito;
     }
+
+    public String hola(){
+        return "Hola, buenas noches";
+    }
 }
