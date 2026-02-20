@@ -1,0 +1,45 @@
+name: Pipeline principal CI/CD
+on:
+  push:
+    branches:
+      - develop
+      - main
+  pull_request:
+    branches:
+      - develop
+      - main
+jobs:
+  test:
+    uses: ./.github/workflows/build-test-reusable-esclavo.yml
+    with:
+      java-version: '25'
+  deploy-staging:
+    needs: test
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Checkout de código
+        uses: actions/checkout@v6.0.2
+      - name: Generando ejecutable JAR
+        run: ./mvnw clean package -DskipTests
+      - name: Deploy a staging
+        run: |
+          echo "Realizando Deploy a Staging..."
+          curl -X POST https://staging.miaplicacion.com/deploy -H "Authorization: Bearer ${{ secrets.STAGING_TOKEN }}"
+  deploy-prod:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://pepeapi.com
+    steps:
+      - name: Checkout de código
+        uses: actions/checkout@v6.0.2
+      - name: Generando ejecutable JAR
+        run: ./mvnw clean package -DskipTests
+      - name: Deploy a Producción
+        run: |
+          echo "Realizando Deploy a Producción..."
+          curl -X POST https://prod.pepeapi.com/deploy -H "Authorization: Bearer ${{ secrets.STAGING_TOKEN }}"
