@@ -10,7 +10,7 @@ on:
       - main
 jobs:
   test:
-    uses: ./.github/workflows/build-test-reusable-esclavo.yml
+    uses: ./.github/workflows/build-test-reutilizable-esclavo.yml
     with:
       java-version: '25'
   deploy-staging:
