@@ -22,7 +22,7 @@ jobs:
       - name: Checkout de código
         uses: actions/checkout@v6.0.2
       - name: Generando ejecutable JAR
-        run: ./mvnw clean package -DskipTests
+        run: mvn clean package -DskipTests
       - name: Deploy a staging
         run: |
           echo "Realizando Deploy a Staging..."
