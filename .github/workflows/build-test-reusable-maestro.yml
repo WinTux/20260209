@@ -31,7 +31,7 @@ jobs:
       - name: Deploy a staging
         run: |
           echo "Realizando Deploy a Staging..."
-          curl -X POST https://staging.miaplicacion.com/deploy -H "Authorization: Bearer ${{ secrets.STAGING_TOKEN }}"
+        # curl -X POST https://staging.miaplicacion.com/deploy -H "Authorization: Bearer ${{ secrets.STAGING_TOKEN }}"
   deploy-prod:
     needs: test
     if: github.ref == 'refs/heads/main'
@@ -52,4 +52,4 @@ jobs:
       - name: Deploy a Producción
         run: |
           echo "Realizando Deploy a Producción..."
-          curl -X POST https://prod.pepeapi.com/deploy -H "Authorization: Bearer ${{ secrets.STAGING_TOKEN }}"
+        # curl -X POST https://prod.pepeapi.com/deploy -H "Authorization: Bearer ${{ secrets.STAGING_TOKEN }}"
