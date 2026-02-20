@@ -21,6 +21,11 @@ jobs:
     steps:
       - name: Checkout de código
         uses: actions/checkout@v6.0.2
+      - name: Configurar Java 25
+        uses: actions/setup-java@v5.2.0
+        with:
+          distribution: 'temurin'
+          java-version: '25'
       - name: Generando ejecutable JAR
         run: mvn clean package -DskipTests
       - name: Deploy a staging
@@ -37,6 +42,11 @@ jobs:
     steps:
       - name: Checkout de código
         uses: actions/checkout@v6.0.2
+      - name: Configurar Java 25
+        uses: actions/setup-java@v5.2.0
+        with:
+          distribution: 'temurin'
+          java-version: '25'
       - name: Generando ejecutable JAR
         run: ./mvnw clean package -DskipTests
       - name: Deploy a Producción
