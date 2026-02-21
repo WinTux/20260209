@@ -68,9 +68,11 @@ jobs:
           # Name of the artifact to download. If unspecified, all artifacts for the run are downloaded.
           name: springboot-app # optional
       # Agregando assets en un Release
-      - name: Subir a GitHub Release
-        uses: softprops/action-gh-release@v1
+      - uses: comnoco/create-release@v2
         with:
-          files: springboot-app/*.jar
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: v1.0.0
+          release_name: "Release v1.0.0"
+          body: "Detalles del release -> Este es un ejemplo de realease que siempre genera el tag v1.0.0"
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
