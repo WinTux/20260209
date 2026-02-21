@@ -36,6 +36,8 @@ jobs:
     needs: test
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     environment:
       name: production
       url: https://pepeapi.com
@@ -65,3 +67,10 @@ jobs:
         with: 
           # Name of the artifact to download. If unspecified, all artifacts for the run are downloaded.
           name: springboot-app # optional
+      # Agregando assets en un Release
+      - name: Subir a GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: springboot-app/*.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
